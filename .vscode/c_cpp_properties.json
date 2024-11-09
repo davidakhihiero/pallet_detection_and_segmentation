@@ -1,0 +1,29 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/davidakhihiero/ros2_ws/install/vicon_receiver/include/**",
+        "/home/davidakhihiero/ros2_ws/install/rtabmap_slam/include/**",
+        "/home/davidakhihiero/ros2_ws/install/rtabmap_odom/include/**",
+        "/home/davidakhihiero/ros2_ws/install/rtabmap_util/include/**",
+        "/home/davidakhihiero/ros2_ws/install/rtabmap_sync/include/**",
+        "/home/davidakhihiero/ros2_ws/install/rtabmap_rviz_plugins/include/**",
+        "/home/davidakhihiero/ros2_ws/install/rtabmap_conversions/include/**",
+        "/home/davidakhihiero/ros2_ws/install/px4_msgs/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/davidakhihiero/pallet_ws/src/pallet_detection_and_segmentation/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
