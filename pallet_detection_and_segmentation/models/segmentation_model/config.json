@@ -29,15 +29,16 @@
   ],
   "id2label": {
     "0": " background\n",
-    "1": " ground\n",
-    "2": " pallet"
+    "1": " background\n",
+    "2": " ground\n",
+    "3": " pallet"
   },
   "image_size": 224,
   "initializer_range": 0.02,
   "label2id": {
-    " background\n": "0",
-    " ground\n": "1",
-    " pallet": "2"
+    " background\n": "1",
+    " ground\n": "2",
+    " pallet": "3"
   },
   "layer_norm_eps": 1e-06,
   "mlp_ratios": [
@@ -77,5 +78,5 @@
     2
   ],
   "torch_dtype": "float32",
-  "transformers_version": "4.44.2"
+  "transformers_version": "4.46.2"
 }

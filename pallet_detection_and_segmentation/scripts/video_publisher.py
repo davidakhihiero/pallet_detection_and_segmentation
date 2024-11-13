@@ -5,12 +5,23 @@ from rclpy.node import Node
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 import cv2
+import ament_index_python
+from pathlib import Path
 
 class VideoPublisher(Node):
     def __init__(self):
         super().__init__('video_publisher')
         self.publisher_ = self.create_publisher(Image, '/camera/color/image_raw', 10)
-        self.declare_parameter('video_file', '/home/davidakhihiero/Downloads/videoplayback.mp4')
+
+        package_share_directory = ament_index_python.get_package_share_directory('pallet_detection_and_segmentation')
+
+        workspace_root = Path(package_share_directory).parents[3]  
+
+        src_directory = workspace_root / 'src' / 'pallet_detection_and_segmentation'
+
+        video_path = src_directory / 'media' / 'videoplayback.mp4'
+
+        self.declare_parameter('video_file', str(video_path))
         self.declare_parameter('publish_rate', 60.0)  # frames per second
         
         self.bridge = CvBridge()
