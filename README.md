@@ -82,7 +82,7 @@ This ROS2 package is structured to include nodes for detecting pallets and segme
      - `/camera/depth/image_raw`: Depth image topic for enhanced segmentation and depth information.
    
    - **Output:**
-     - The detected bounding boxes and segmentation masks are published on respective ROS2 topics for further processing or visualization.
+     - The detected bounding boxes and segmentation masks are displayed for visualization.
 
 ### Launch File
 

@@ -11,7 +11,7 @@ import time
 
 class VideoPublisher(Node):
     def __init__(self):
-        time.sleep(3)
+        time.sleep(5)
         super().__init__('video_publisher')
         self.publisher_ = self.create_publisher(Image, '/camera/color/image_raw', 10)
 
