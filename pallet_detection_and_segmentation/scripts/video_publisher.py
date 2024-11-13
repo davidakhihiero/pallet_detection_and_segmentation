@@ -7,9 +7,11 @@ from cv_bridge import CvBridge
 import cv2
 import ament_index_python
 from pathlib import Path
+import time
 
 class VideoPublisher(Node):
     def __init__(self):
+        time.sleep(3)
         super().__init__('video_publisher')
         self.publisher_ = self.create_publisher(Image, '/camera/color/image_raw', 10)
 

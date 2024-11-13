@@ -31,8 +31,12 @@ class DetectAndSegment(Node):
         detection_model_path = src_directory / 'models' / 'detection_model.pt'
 
         segmentation_model_path = src_directory / 'models' / 'segmentation_model'
+
+        self.saved_images_path = src_directory / 'saved_images'
         
         # img2 = src_directory / 'models' / 'image.jpg'
+
+        self.saved_image_count = 0
 
         device = 'cuda' if torch.cuda.is_available() else 'cpu'
  
@@ -94,19 +98,11 @@ class DetectAndSegment(Node):
             inputs = self.segformer_extractor(images=self.latest_image, return_tensors="pt")
             with torch.no_grad():
                 outputs = self.segformer_model(**inputs)
-                # print("OUTPUTS")
-                # print(outputs[0].shape[2])
+
   
             logits = outputs[0]
-            #logits = logits - 2*logits.min()
-            # print("LOGITS")
-            # print(logits.shape[1])
-            # print("Logits shape:", logits.shape)  # Should reflect the number of classes
-            # print("Sample logits values for a few pixels:", logits[:, :, :5, :5])
 
             segmentation_mask = torch.argmax(logits, dim=1).squeeze().cpu().numpy()
-            # print("Classes in segmentation mask:", np.unique(segmentation_mask))
-            # print(segmentation_mask)
 
             segmentation_mask = self.apply_color_map(segmentation_mask)
 
@@ -137,10 +133,6 @@ class DetectAndSegment(Node):
 
         mask_resized = cv2.resize(segmentation_mask, (img.shape[1], img.shape[0]), interpolation=cv2.INTER_NEAREST)
 
-        
-
-        # print("MASK SIZE")
-        # print(segmentation_mask.shape)
         for x1, y1, x2, y2, conf, cls in detections:
             cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
             cv2.putText(img, f'{cls} {conf*100:.0f}%', (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2)
@@ -149,6 +141,9 @@ class DetectAndSegment(Node):
         overlay = cv2.addWeighted(img, 0.7, mask_resized, 0.3, 0)
 
         cv2.imshow('Detection and Segmentation', overlay)
+        # image_path = str(self.saved_images_path) +  "/Image" + str(self.saved_image_count) + ".jpg"
+        # self.saved_image_count += 1
+        # cv2.imwrite(image_path, overlay)
         cv2.waitKey(1)
 
 
