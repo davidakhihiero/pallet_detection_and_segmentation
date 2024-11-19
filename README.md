@@ -78,7 +78,7 @@ This ROS2 package is structured to include nodes for detecting pallets and segme
    
 2. **Topics Used:**
    - **Input:**
-     - `/camera/color/image_raw`: Color image topic for detection and segmentation.
+     - `/robot1/zed2i/left/image_rect_color`: Color image topic for detection and segmentation.
      - `/camera/depth/image_raw`: Depth image topic for enhanced segmentation and depth information.
    
    - **Output:**
