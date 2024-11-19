@@ -14,6 +14,7 @@ import numpy as np
 import ament_index_python
 from pathlib import Path
 from transformers import SegformerFeatureExtractor, SegformerForSemanticSegmentation
+from rclpy.qos import QoSProfile, ReliabilityPolicy
 
 
 class DetectAndSegment(Node):
@@ -47,12 +48,17 @@ class DetectAndSegment(Node):
         self.segformer_model = SegformerForSemanticSegmentation.from_pretrained(segmentation_model_path)
         self.segformer_model.eval()
 
+        qos_profile = QoSProfile(
+                            reliability=ReliabilityPolicy.BEST_EFFORT,
+                            depth=10  
+                        )
+
         # Subscribing to image topics
         self.image_subscription = self.create_subscription(
             Image,
-            '/camera/color/image_raw',
+            '/robot1/zed2i/left/image_rect_color',
             self.image_callback,
-            10
+            qos_profile
         )
 
         self.depth_subscription = self.create_subscription(

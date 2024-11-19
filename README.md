@@ -86,6 +86,6 @@ This ROS2 package is structured to include nodes for detecting pallets and segme
 
 ### Launch File
 
-The ROS2 package includes a launch file that starts the detection and segmentation process:
+To starts the detection and segmentation process:
 ```bash
-ros2 launch pallet_detection_and_segmentation detect_and_segment.launch.py
+ros2 run pallet_detection_and_segmentation detect_and_segment.py
